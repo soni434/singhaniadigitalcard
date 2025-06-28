@@ -1,1 +1,1 @@
-# singhaniadigitalcard
+# This is digital visiting card developed in HTML & CSS 
