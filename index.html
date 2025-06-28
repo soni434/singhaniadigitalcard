@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Flip Visiting Card</title>
+
+  <!-- Fonts and Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #e63946, #f6ae2d, #ffe066, #ffcc70);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .flip-container {
+      width: 100%;
+      max-width: 600px;
+      perspective: 1000px;
+    }
+
+    .flipper {
+      position: relative;
+      width: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-container.hover .flipper,
+    .flip-container.active .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      color: #ecf0f1;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+      backface-visibility: hidden;
+      background-size: cover;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .front {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    }
+
+    .back {
+      background: linear-gradient(135deg, #e63946, #f6ae2d, #ffe066, #ffcc70);
+      transform: rotateY(180deg);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card-left,
+    .card-right {
+      width: 50%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      height: 60px;
+      margin-bottom: 10px;
+      max-width: 100%;
+    }
+
+    .company-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: gold;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      font-size: 13px;
+      color: white;
+      margin-bottom: 6px;
+    }
+
+    .info i {
+      margin-right: 8px;
+    }
+
+    .info a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .info a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      width: 28px;
+      height: 28px;
+      background: #2e3b4e;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .website-link {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .website-link a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .md-name {
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .card.back h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .card.back p,
+    .card.back a {
+      font-size: 13px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .card {
+        flex-direction: column;
+      }
+
+      .card-left,
+      .card-right {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .logo {
+        height: 50px;
+        margin: 0 auto 10px auto;
+      }
+
+      .company-name,
+      .tagline,
+      .info,
+      .md-name,
+      .website-link {
+        text-align: center;
+      }
+
+      .social-icons {
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <script>
+    // Mobile tap flip
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.querySelector(".flip-container");
+
+      container.addEventListener("click", () => {
+        container.classList.toggle("active");
+      });
+
+      // Desktop hover (optional, disable on touch devices)
+      container.addEventListener("mouseenter", () => {
+        if (window.innerWidth > 768) container.classList.add("hover");
+      });
+
+      container.addEventListener("mouseleave", () => {
+        if (window.innerWidth > 768) container.classList.remove("hover");
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="flip-container">
+    <div class="flipper">
+
+      <!-- FRONT SIDE -->
+      <div class="card front">
+        <div class="card-left">
+          <img src="logo.jpg" alt="Logo" class="logo" />
+          <div class="company-name"><i class="fas fa-industry"></i> Singhania International Ltd</div>
+          <div class="tagline">Fastening Solutions for Every Industry</div>
+          <div class="md-name"><i class="fas fa-user"></i> Anil Kumar Singhania (MD)</div>
+          <div class="info"><i class="fas fa-phone"></i><a href="tel:+919814081418">+91-98140 81418</a></div>
+          <div class="info"><i class="fas fa-envelope"></i><a href="mailto:anil@singhaniainternational.com">anil@singhaniainternational.com</a></div>
+          <div class="info"><i class="fas fa-globe"></i><a href="https://www.singhaniainternational.com" target="_blank">www.singhaniainternational.com</a></div>
+          <div class="info"><i class="fas fa-map-marker-alt"></i> C-25, Phase-1, Focal Point, Ludhiana</div>
+        </div>
+        <div class="card-right">
+          <img src="logo1.jpg" alt="Logo" class="logo" />
+          <div class="company-name"><i class="fas fa-building"></i> Singhania Dreamscapes Realty Ltd</div>
+          <div class="tagline">Building Townships, Creating Dreams</div>
+          <div class="website-link"><i class="fas fa-globe"></i> <a href="https://www.singhaniarealty.com/" target="_blank">www.singhaniarealty.com</a></div>
+          <div class="social-icons">
+            <a href="https://wa.me/918283955155" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+          <div class="website-link"><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/HTG4aY8jXkvFAPZo8" target="_blank">View Location</a></div>
+        </div>
+      </div>
+
+      <!-- BACK SIDE -->
+      <div class="card back">
+        <div class="card-left">
+          <h3>About Us</h3>
+          <p>Singhania Group is known for excellence in industrial fastening solutions and real estate development.</p>
+          <p>We’re committed to innovation, trust, and customer satisfaction.</p>
+          <p>Visit our websites or contact us directly for brochures and inquiries.</p>
+        </div>
+        <div class="card-right">
+          <h3>Reach Us</h3>
+          <p><i class="fas fa-envelope"></i> anil@singhaniainternational.com</p>
+          <p><i class="fas fa-phone"></i> +91-98140 81418</p>
+          <p><i class="fas fa-globe"></i> www.singhaniainternational.com</p>
+          <p><i class="fas fa-globe"></i> www.singhaniarealty.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Ludhiana | Punjab | India</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
