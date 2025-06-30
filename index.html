@@ -162,10 +162,11 @@
       display: block;
     }
 
-    /* Responsive */
+    /* Responsive Styling */
     @media (max-width: 768px) {
       .card {
         flex-direction: column;
+        height: auto;
       }
 
       .card-left,
@@ -175,8 +176,9 @@
       }
 
       .logo {
-        height: 50px;
+        display: block;
         margin: 0 auto 10px auto;
+        height: 50px;
       }
 
       .company-name,
@@ -194,7 +196,6 @@
   </style>
 
   <script>
-    // Mobile tap flip
     document.addEventListener("DOMContentLoaded", function () {
       const container = document.querySelector(".flip-container");
 
@@ -202,7 +203,6 @@
         container.classList.toggle("active");
       });
 
-      // Desktop hover (optional, disable on touch devices)
       container.addEventListener("mouseenter", () => {
         if (window.innerWidth > 768) container.classList.add("hover");
       });
@@ -230,6 +230,7 @@
           <div class="info"><i class="fas fa-globe"></i><a href="https://www.singhaniainternational.com" target="_blank">www.singhaniainternational.com</a></div>
           <div class="info"><i class="fas fa-map-marker-alt"></i> C-25, Phase-1, Focal Point, Ludhiana</div>
         </div>
+
         <div class="card-right">
           <img src="logo1.jpg" alt="Logo" class="logo" />
           <div class="company-name"><i class="fas fa-building"></i> Singhania Dreamscapes Realty Ltd</div>
